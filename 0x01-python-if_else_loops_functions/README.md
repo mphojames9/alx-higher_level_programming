@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+0x01. Python - if/else, loops, functions
+=======
 # 0x01. Python - if/else, loops, functions
 
 ## Requirements
@@ -23,3 +26,4 @@
 * The prototypes of all your functions should be included in your header file called lists.h
 * Don’t forget to push your header file
 * All your header files should be include guarded
+>>>>>>> adb4c79fa1497fb8f76c1c6e7e7557ed8e725c30
