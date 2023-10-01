@@ -1,32 +1,17 @@
 #!/usr/bin/python3
-"""Lists all cities from the database hbtn_0e_4_usa"""
+"""  lists all states from the database hbtn_0e_0_usa """
+import MySQLdb
+import sys
 
-if __name__ == '__main__':
-    from sys import argv
-    import MySQLdb as mysql
 
-    if (len(argv) != 4):
-        print('Use: username, password, database name')
-        exit(1)
-
-    try:
-        db = mysql.connect(host='localhost', port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3])
-    except Exception:
-        print('Failed to connect to the database')
-        exit(0)
-
-    cursor = db.cursor()
-
-    cursor.execute("""SELECT c.id, c.name, s.name FROM cities as c
-                      INNER JOIN states as s
-                      ON c.state_id = s.id
-                      ORDER BY c.id ASC;""")
-
-    result_query = cursor.fetchall()
-
-    for row in result_query:
+if __name__ == "__main__":
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    cur = db.cursor()
+    cur.execute("""SELECT cities.id, cities.name, states.name FROM
+                cities INNER JOIN states ON states.id=cities.state_id""")
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
-
-    cursor.close()
+    cur.close()
     db.close()
